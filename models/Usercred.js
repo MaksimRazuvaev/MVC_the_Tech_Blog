@@ -22,9 +22,22 @@ Usercred.init(
     usercred_password: {
         type: DataTypes.STRING,
         allowNull: false,
-      },
+    },
+    usercred_email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+
   },
   {
+    // what is for???
+    hooks: {
+      async beforeCreate(newUserData) {
+        newUserData.password = await bcrypt.hash(newUserData.password, 10);
+        return newUserData;
+      },
+    },
+
     sequelize,
     timestamps: true,
     freezeTableName: true,
