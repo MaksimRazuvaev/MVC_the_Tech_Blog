@@ -1,0 +1,20 @@
+<section>
+    <header>{{post.post_header}}</header>
+    <div>
+        <p>{{post.post_body}}</p>
+        {{#each post.comments as |comment|}}
+        <p>{{comment_body}}</p>
+        <p>Posted by: {{usercred_name}}</p>
+        <p>on {{format_date createdAt}}</p>
+        {{/each}}
+    </div>
+    <div class="form-group">
+        <label for="comment">Comment</label>
+        <input class="form-input" type="text" id="user-comment" />
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+
+</section>

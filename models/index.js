@@ -16,6 +16,28 @@ Post.hasMany(Comment, {
   onDelete: 'CASCADE',
 });
 
+// Post belongsTo User
+Post.belongsTo(Usercred, {
+  foreignKey: 'user_id',
+});
+
+// User have many Posts
+Usercred.hasMany(Post, {
+  foreignKey: 'user_id',
+  onDelete: 'CASCADE',
+});
+
+// Comment belongsTo User
+Comment.belongsTo(Usercred, {
+  foreignKey: 'user_id',
+});
+
+// User have many Posts
+Usercred.hasMany(Comment, {
+  foreignKey: 'user_id',
+  onDelete: 'CASCADE',
+});
+
 
 module.exports = {
     Comment,

@@ -6,7 +6,7 @@ const sequelize = require('../config/connection.js');
 
 class Usercred extends Model {}
 
-Post.init(
+Usercred.init(
   {
     // define columns
     id: {
@@ -26,7 +26,7 @@ Post.init(
   },
   {
     sequelize,
-    timestamps: false,
+    timestamps: true,
     freezeTableName: true,
     underscored: true,
     modelName: 'usercred',

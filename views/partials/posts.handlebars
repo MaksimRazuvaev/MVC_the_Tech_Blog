@@ -1,9 +1,12 @@
 <section>
-  {{!-- <a href="/gallery/{{id}}"> --}}
+  <a href="/post/{{id}}">
     <header>{{post_header}}</header>
     <div>
-        <p>{{post_body}}</p>
+      <p>Posted on {{format_date createdAt}}</p>
+        {{!-- <p>{{post_body}}</p> --}}
+        {{!-- {{#each comments as |comment|}}
         <p>{{comment_body}}</p>
+        {{/each}} --}}
     </div>
-  {{!-- </a> --}}
+  </a>
 </section>

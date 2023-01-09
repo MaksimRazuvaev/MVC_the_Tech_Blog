@@ -23,10 +23,19 @@ Post.init(
         type: DataTypes.STRING,
         allowNull: false,
     },
+    user_id: {
+      type: DataTypes.INTEGER,
+      // update to false later
+      allowNull: true, 
+      references: {
+        model: 'usercred',
+        key: 'id'
+      },
+    },
   },
   {
     sequelize,
-    timestamps: false,
+    timestamps: true, // to create timestamp column automaticly
     freezeTableName: true,
     underscored: true,
     modelName: 'post',
