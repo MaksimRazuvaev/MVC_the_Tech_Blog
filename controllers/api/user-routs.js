@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
 // Login
 router.post('/login', async (req, res) => {
     try {
-      const dbUserData = await User.findOne({
+      const dbUserData = await Usercred.findOne({
         where: {
             usercred_email: req.body.email,
         },
@@ -53,7 +53,7 @@ router.post('/login', async (req, res) => {
   
       // Once the user successfully logs in, set up the sessions variable 'loggedIn'
       req.session.save(() => {
-        req.session.loggedIn = true;   // ????? How does it refer to other APIs (Dashboard) How this session keeps alive???
+        req.session.loggedIn = true;   // loggedIn varaible is set to browser to mark session as loged in
   
         res
           .status(200)

@@ -22,7 +22,7 @@ router.get('/', async (req, res) => { // main page
 console.log(posts);
     res.render('homepage', { // refers to homepage.handlebars
       posts,
-
+      loggedIn: req.session.loggedIn,
     });
   } catch (err) {
     console.log(err);

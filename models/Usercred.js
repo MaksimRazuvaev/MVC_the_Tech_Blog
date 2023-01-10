@@ -2,9 +2,15 @@
 
 const { Model, DataTypes } = require('sequelize');
 
+const bcrypt = require('bcrypt');
+
 const sequelize = require('../config/connection.js');
 
-class Usercred extends Model {}
+class Usercred extends Model {
+  checkPassword(loginPw) {
+    return bcrypt.compareSync(loginPw, this.usercred_password);
+  }
+}
 
 Usercred.init(
   {
@@ -30,10 +36,11 @@ Usercred.init(
 
   },
   {
-    // what is for???
+    // encript user password before storing in DB
     hooks: {
-      async beforeCreate(newUserData) {
-        newUserData.password = await bcrypt.hash(newUserData.password, 10);
+      beforeCreate:async (newUserData) => {
+console.log(newUserData);
+        newUserData.usercred_password = await bcrypt.hash(newUserData.usercred_password, 10);
         return newUserData;
       },
     },
