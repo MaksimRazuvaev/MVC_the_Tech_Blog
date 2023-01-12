@@ -12,7 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 const sess = {
-  secret: 'Super secret secret',
+  secret: process.env.SECRET, // value is saved inside .env file
   cookie: {
     // this is how long session stays alaive this is related to loggedIn from home-routes.js
     maxAge: 60 * 60 * 1000,

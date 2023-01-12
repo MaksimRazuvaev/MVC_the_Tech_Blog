@@ -87,12 +87,14 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/dashboard', (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect('/');
-    return;
-  }
+  // if (req.session.loggedIn) {
+  //   res.redirect('/');
+  //   return;
+  // }
 
-  res.render('dashboard');
+  res.render('dashboard', {      
+    loggedIn: req.session.loggedIn,
+  });
 });
 
 

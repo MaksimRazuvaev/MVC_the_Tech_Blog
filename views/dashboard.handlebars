@@ -1,1 +1,8 @@
+
+
+  {{#if loggedIn}}
 this is Dashboard
+<!-- Otherwise, provide a link to login -->
+{{else}}
+<a href="/login">You must login first to view your dashboard</a>
+{{/if}}

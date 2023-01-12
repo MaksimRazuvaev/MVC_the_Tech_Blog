@@ -17,4 +17,10 @@
         <button class="btn btn-primary" type="submit">Submit</button>
     </div>
 
+    {{#if loggedIn}}
+    <script src="/js/comment.js"></script>
+    {{else}}
+    <a href="/login">Login</a>
+    {{/if}}
+
 </section>
