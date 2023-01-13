@@ -2,7 +2,7 @@
 // create HTML routs to display HTML layouts
 
 const router = require('express').Router();
-const { Usercred } = require('../../models');
+const { Usercred, Comment } = require('../../models');
 
 
 // CREATE new user
@@ -50,11 +50,12 @@ router.post('/login', async (req, res) => {
           .json({ message: 'Incorrect password. Please try again!' });
         return;
       }
+console.log(dbUserData);
   
       // Once the user successfully logs in, set up the sessions variable 'loggedIn'
       req.session.save(() => {
         req.session.loggedIn = true;   // loggedIn varaible is set to browser to mark session as loged in
-  
+        req.session.userId = dbUserData.id;
         res
           .status(200)
           .json({ user: dbUserData, message: 'You are now logged in!' });
@@ -76,5 +77,26 @@ router.post('/logout', (req, res) => {
       res.status(404).end();
     }
   });
+
+  // comment
+router.post('/post/:id', async (req, res) => {
+  try { 
+console.log(req.session.userId);
+    const dbCommentData = await Comment.create({
+      comment_body: req.body.comment,
+      post_id: req.params.id,
+      user_id: req.session.userId,
+  });
+
+      res
+        .status(200)
+        .json({ comment: dbCommentData, message: 'Your comment is saved!' });
+  } 
+  
+  catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
   module.exports = router;

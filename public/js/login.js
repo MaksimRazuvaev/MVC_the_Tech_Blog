@@ -16,7 +16,7 @@ const loginFormHandler = async (event) => {
     } else {
       alert('Failed to log in.');
     }
-  }
+  } 
 };
   
 const signupFormHandler = async (event) => {
@@ -40,7 +40,7 @@ const signupFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace('/');                  //????? what does it do ?????
+      document.location.replace('/');       //to return to home page after login/signup
     } else {
       alert('Failed to sign up.');
     }

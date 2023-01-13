@@ -1,8 +1,10 @@
+{{#each my_posts as |post|}}
+{{> posts }}
+{{/each}}
 
 
-  {{#if loggedIn}}
-this is Dashboard
-<!-- Otherwise, provide a link to login -->
-{{else}}
-<a href="/login">You must login first to view your dashboard</a>
-{{/if}}
+<section>
+    <div>
+        <button id="newPost" class="btn-no-style">+ New Post</button>
+    </div>
+</section>

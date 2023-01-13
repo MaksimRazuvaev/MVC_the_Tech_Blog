@@ -47,6 +47,7 @@ router.get('/post/:id', async (req, res) => {
           attributes: [
             'id',
             'comment_body',
+            'created_at',
           ],
           include: [
             {
@@ -86,15 +87,31 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/dashboard', (req, res) => {
-  // if (req.session.loggedIn) {
-  //   res.redirect('/');
-  //   return;
-  // }
+router.get('/dashboard', async (req, res) => {
+  try {
+    // to request all my existed posts in db with comments to them  ???????????
+    // ????? How to get current user ID ??????
+    const dbAllMyPosts = await Post.findAll({
+      include: [
+        {
+          model: Comment,
+          attributes: ['comment_body'],
+        },
+      ],
+    });
 
-  res.render('dashboard', {      
-    loggedIn: req.session.loggedIn,
-  });
+    const my_posts = dbAllMyPosts.map((post) =>
+      post.get({ plain: true })
+    );
+console.log(my_posts);
+    res.render('dashboard', { // refers to homepage.handlebars
+      my_posts,
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 });
 
 
