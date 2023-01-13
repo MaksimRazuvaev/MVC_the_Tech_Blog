@@ -34,6 +34,7 @@ console.log(posts);
 router.get('/post/:id', async (req, res) => {
   try {
     const dbAllPosts = await Post.findByPk(req.params.id, {
+      
       include: [
         {
           model: Usercred,
@@ -92,6 +93,7 @@ router.get('/dashboard', async (req, res) => {
     // to request all my existed posts in db with comments to them  ???????????
     // ????? How to get current user ID ??????
     const dbAllMyPosts = await Post.findAll({
+      where: { user_id: req.session.userId },  // ??? 1/13/23 to filter out Posts by user ID ??? 
       include: [
         {
           model: Comment,
