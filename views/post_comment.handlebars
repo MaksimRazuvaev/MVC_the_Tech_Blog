@@ -13,6 +13,7 @@
     
     {{#if loggedIn}}
     <form class="form comment-form">
+
             <div class="form-group">
                 <label for="comment">Comment</label>
                 <input class="form-input" type="text" id="user-comment" />
@@ -21,6 +22,7 @@
             <div class="form-group">
                 <button class="btn btn-primary" type="submit" data-post-id={{post.id}} >Submit</button>
             </div>
+            
         </form>
 
         <script src="/js/comment.js"></script>

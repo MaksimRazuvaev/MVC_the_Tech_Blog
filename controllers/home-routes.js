@@ -91,7 +91,7 @@ router.get('/login', (req, res) => {
 router.get('/dashboard', async (req, res) => {
   try {
     // to request all my existed posts in db with comments to them  ???????????
-    // ????? How to get current user ID ??????
+    // to get current user ID
     const dbAllMyPosts = await Post.findAll({
       where: { user_id: req.session.userId },  // ??? 1/13/23 to filter out Posts by user ID ??? 
       include: [
@@ -115,6 +115,19 @@ console.log(my_posts);
     res.status(500).json(err);
   }
 });
+
+// to open new post
+router.get('/dashboard/newpost', async (req, res) => {
+  try {
+    res.render('dasbordNewPost', { // refers to dasbordNewPost.handlebars
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 
 
 module.exports = router;

@@ -1,10 +1,25 @@
-{{#each my_posts as |post|}}
-{{> posts }}
-{{/each}}
-
-
 <section>
-    <div>
-        <button id="newPost" class="btn-no-style">+ New Post</button>
-    </div>
+    
+    {{#if loggedIn}}
+
+        {{#each my_posts as |post|}}
+        {{> posts }}
+        {{/each}}
+
+
+        <section>
+            <div>
+                <a href="dashboard/newpost">
+                    <button id="newPost" class="btn-no-style">+ New Post</button>
+                </a>
+            </div>
+        </section>
+
+    {{else}}
+    <a href="/login">Please login if you want to see your posts</a>
+    {{/if}}
+
 </section>
+
+
+    

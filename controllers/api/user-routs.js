@@ -2,7 +2,7 @@
 // create HTML routs to display HTML layouts
 
 const router = require('express').Router();
-const { Usercred, Comment } = require('../../models');
+const { Usercred, Comment, Post } = require('../../models');
 
 
 // CREATE new user
@@ -98,5 +98,27 @@ console.log(req.session.userId);
     res.status(500).json(err);
   }
 });
+
+ // new post
+ router.post('/dashboard/newpost', async (req, res) => {
+  try { 
+console.log(req.session.userId);
+    const dbPostData = await Post.create({
+      post_header: req.body.title,
+      post_body: req.body.content,
+      user_id: req.session.userId,
+  });
+
+      res
+        .status(200)
+        .json({ comment: dbPostData, message: 'Your post is saved!' });
+  } 
+  
+  catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 
   module.exports = router;
