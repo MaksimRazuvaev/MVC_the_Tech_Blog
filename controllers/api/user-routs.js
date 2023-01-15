@@ -120,5 +120,43 @@ console.log(req.session.userId);
   }
 });
 
+ // update post ?????
+ router.put('/dashboard/newpost/:id', async (req, res) => {
+  // how to get an ID ?????
+  try { 
+console.log(req.session.userId);
+    const dbPostData = await Post.create({
+      post_header: req.body.title,
+      post_body: req.body.content,
+      user_id: req.session.userId,
+  });
+
+      res
+        .status(200)
+        .json({ comment: dbPostData, message: 'Your post is saved!' });
+  } 
+  
+  catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+// delete post ?????
+router.delete('/dashboard/newpost/:id', async (req, res) => {
+  // how to get an ID ?????
+  try { 
+    const dbPostData = await Post.destroy({ where: { id: req.params.id} })
+
+      res
+        .status(200)
+        .json({ comment: dbPostData, message: 'Your post is deleted!' });
+  } 
+  
+  catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
   module.exports = router;

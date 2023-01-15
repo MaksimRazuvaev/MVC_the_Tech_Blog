@@ -1,0 +1,34 @@
+<section>
+    <form class="form newPost-form">
+
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input class="form-input" type="text" id="user-title" value="{{post.post_header}}"/>
+        </div>
+
+        <div class="form-group">
+            <label for="comment">Content</label>
+            <input class="form-input" type="text" id="user-content" value="{{post.post_body}}"/>
+        </div>
+        
+    </form>
+
+    <form class="form update-form">
+
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit">Update Post</button>
+        </div>
+
+    </form>
+
+    <form class="form deletePost-form">
+
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit">Delete</button>
+        </div>
+
+    </form>
+
+    <script src="/js/myPost.js"></script>
+
+</section>
