@@ -121,19 +121,22 @@ console.log(req.session.userId);
 });
 
  // update post ?????
- router.put('/dashboard/newpost/:id', async (req, res) => {
+ router.put('/dashboard/mypost/:id', async (req, res) => {
   // how to get an ID ?????
   try { 
-console.log(req.session.userId);
-    const dbPostData = await Post.create({
+console.log("this is user.id " +req.session.userId);
+console.log("this is params.id " + req.params.id);
+    const dbPostData = await Post.update(
+      {
       post_header: req.body.title,
       post_body: req.body.content,
-      user_id: req.session.userId,
-  });
+      // user_id: req.session.userId,
+      },
+      { where: { id: req.params.id} });
 
       res
         .status(200)
-        .json({ comment: dbPostData, message: 'Your post is saved!' });
+        .json({ comment: dbPostData, message: 'Your post is updated!' });
   } 
   
   catch (err) {
@@ -143,7 +146,10 @@ console.log(req.session.userId);
 });
 
 // delete post ?????
-router.delete('/dashboard/newpost/:id', async (req, res) => {
+router.delete('/dashboard/mypost/:id', async (req, res) => {
+
+  console.log("this is params.id " + req.params.id);
+
   // how to get an ID ?????
   try { 
     const dbPostData = await Post.destroy({ where: { id: req.params.id} })

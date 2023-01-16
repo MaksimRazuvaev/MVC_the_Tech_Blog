@@ -1,14 +1,17 @@
 const updateMyPost = async (event) => {
     event.preventDefault();
 
-console.log(event.target[1].dataset);
+//console.log(event.target[1].dataset);
+
+    const idUpdate = document.location.pathname.split("/")[3];
+
 
     const title = document.querySelector('#user-title').value.trim();
     const content = document.querySelector('#user-content').value.trim();
 
     // if (title & content) {
     if (title && content) {
-      const response = await fetch(`/api/users/dashboard/newpost/:id`, {
+      const response = await fetch(`/api/users/dashboard/mypost/${idUpdate}`, {
         method: 'PUT',
         body: JSON.stringify({ title, content }),
         headers: { 'Content-Type': 'application/json' },
@@ -30,7 +33,7 @@ const deleteMyPost = async (event) => {
 console.log(idDelete);
 
     if (idDelete) {
-        const response = await fetch(`/api/users/dashboard/newpost/${idDelete}`, {
+        const response = await fetch(`/api/users/dashboard/mypost/${idDelete}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         });
@@ -45,7 +48,7 @@ console.log(idDelete);
 
 
   document
-  .querySelector('.newPost-form')
+  .querySelector('.update-form')
   .addEventListener('submit', updateMyPost);
 
   document
