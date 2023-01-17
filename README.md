@@ -50,8 +50,8 @@ N/A
 MIT License according to the LICENSE file in the repo.
 
 ## Resources
-- 
-- 
+- https://stackoverflow.com/questions/8402597/sequelize-js-delete-query
+- https://ui.dev/get-current-url-javascript
 - 
 - 
 - 

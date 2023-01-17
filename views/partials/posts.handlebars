@@ -2,7 +2,8 @@
   <a href="/post/{{id}}">
     <header>{{post_header}}</header>
     <div>
-      <p>Posted on {{format_date createdAt}}</p>
+      <p>{{post_body}}</p>
+      <p>Posted by {{usercred.usercred_name}} on {{format_date createdAt}}</p>
     </div>
   </a>
 </section>

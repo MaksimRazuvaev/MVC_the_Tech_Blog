@@ -15,6 +15,13 @@ router.get('/', async (req, res) => { // main page
           model: Comment,
           attributes: ['comment_body'],
         },
+        {
+          model: Usercred,
+          attributes: [
+            'id',
+            'usercred_name',
+          ],
+        },
       ],
     });
 
